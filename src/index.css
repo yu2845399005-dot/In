@@ -1,0 +1,63 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Inter:wght@400;500;600&display=swap');
+
+@theme {
+  --font-headline: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-label: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: #131313;
+  --color-surface: #000000;
+  --color-primary: #c1c1ff;
+  --color-primary-container: #5d5cff;
+  
+  --color-surface-container-lowest: #0e0e0e;
+  --color-surface-container-low: #1b1b1b;
+  --color-surface-container-high: #2a2a2a;
+  --color-surface-container-highest: #353535;
+  
+  --color-on-surface: #e2e2e2;
+  --color-on-surface-variant: #c7c4d8;
+  --color-on-primary: #1500a8;
+  
+  --radius-full: 9999px;
+  --radius-xl: 0.5rem;
+  --radius-2xl: 1rem;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-on-surface font-body selection:bg-primary/30;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    background: rgba(27, 27, 27, 0.4);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .spotlight-border {
+    position: absolute;
+    inset: -1px;
+    background: radial-gradient(
+      600px circle at var(--mouse-x) var(--mouse-y),
+      rgba(193, 193, 255, 0.15),
+      transparent 40%
+    );
+    z-index: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .glass-card:hover .spotlight-border {
+    opacity: 1;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-container;
+  }
+}
